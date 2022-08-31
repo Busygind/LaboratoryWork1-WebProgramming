@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="../src/css/block.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../src/js/VariableSelector.js"></script>
+    <script src="../src/js/Cleaner.js"></script>
+    <script src="../src/js/Updater.js"></script>  
+    <script src="../src/js/Validator.js"></script>  
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 1.0rem;
+            margin: 1px;
+        }
+
+        h2 {
+            margin: 4px;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 86vh;
+            background-color: #e5e5e6;
+            border: 2px solid #141414;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0px;
+        }
+
+        .main-panel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1%;
+        }
+
+        .desc {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            font-family: inherit;
+            font-size: inherit;
+            color: #141414;
+        }
+
+        .desc h1 {
+            margin: 2px;
+        }
+
+        .container .graph {
+            border: 2px solid #141414;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            margin-bottom: 10px;
+            width: 310px;
+            text-align: center;
+        }
+
+        .container .graph svg{
+            stroke: rgba(0, 0, 0, 0.92);
+            fill: #fabf4d;
+            font-size: 0.9rem;
+        }
+
+        .user-input {
+            text-align: center;
+            border: 2px dotted #141414;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            width: 40%;
+            min-width: 370px;
+            max-width: 425px;
+            max-height: 340px;
+            height: fit-content;
+            padding-bottom: 1%;
+            padding-top: 1%;
+        }
+
+        .values {
+            width: 100%;
+        }
+
+        #x-values {
+            font-size: 1rem;
+        }
+
+        .x-values input, .r-values input {
+            display: none;
+            padding: 3%;
+        }
+
+        .x-values label, .r-values label {
+            display: inline-block;
+            cursor: pointer;
+            /* padding: 5px; */
+            width: 30px;
+            line-height: 32px;
+            border: 1px solid #141414;
+            border-radius: 6px;
+            user-select: none;
+            margin-bottom: 1%;
+            margin-top: 1%;
+        }
+
+        /* Checked */
+        .x-values input[type=radio]:checked + label, .r-values input[type=checkbox]:checked + label {
+            background: #141414;
+            color: #f8f9fb;
+        }
+        
+        /* Hover */
+        .x-values label:hover, .r-values label:hover {
+            color: #666;
+        }
+        
+        /* Disabled */
+        .x-values input[type=radio]:disabled + label, .r-values input[type=checkbox]:disabled + label {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        #y-value {
+            width: 90%;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border: 1px solid #141414;
+            border-radius: 3px;
+            background-color: #e0e0e0;
+            font-family: inherit;
+            font-size: inherit;
+            margin-bottom: 1%;
+            margin-top: 1%;
+        }
+
+        .buttons input{
+            font-family: inherit;
+            font-size: 130%;
+            color: white;
+            border: 1px solid #141414;
+            border-radius: 5px;
+            width: 30%;
+            background-color: #141414;
+            margin-bottom: 1%;
+            margin-top: 1%;
+        }
+
+        #table {
+            font-family: inherit;
+            font-size: 130%;
+            color: #141414;
+            background-color: #fabf4d;
+            width: 80%;
+            border: 2px solid #141414;
+            border-radius: 5px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1%;
+            margin-top: 2%;
+        }
+
+        .validationInfo {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1%;
+            margin-top: 1%;
+            text-align: center;
+            height: 2.7vh;
+            font-family: inherit;
+            font-size: 130%;
+            color: #fa495a;
+            opacity: 0;
+            transition: opacity 0.7s;
+        }
+
+        .validationInfo.show {
+            opacity: 1;
+            transition: opacity 0.7s;
+        }
+
+        footer {
+            position: absolute;
+            background-color: #141414;
+            width: 99.9%;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="desc">
+                <h1>Laboratory work #1</h1>
+                <h2>Author: Busygin Dmitry, P32111</h2>
+                <h2>Variant: 1502</h2>
+            </div>
+        </header>
+        <section class="main-panel">
+            <div class="graph">
+                <h2>Given area:</h2>
+                <svg width="300px" height="300px">
+                    <!-- Координатные оси -->
+                    <line x1="0" x2="300" y1="150" y2="150"></line>
+                    <line x1="150" x2="150" y1="0" y2="300"></line>
+                    <!--Стрелки-->
+                    <polygon points="150,0 145,15 155,15" stroke="black"></polygon>
+                    <polygon points="300,150 285,145 285,155" stroke="black"></polygon>
+                    <!--Прямоугольник в третьей четверти-->
+                    <polygon points="150,150 50,150 50,200 150,200"></polygon>
+                    <!--Четверть круга в первой четверти-->
+                    <path d="M150,100 A50,50 90 0,1 200,150 L 150,150 Z"></path>
+                    <!--Треугольник в четвертой четверти-->
+                    <polygon points="250,150 150,250 150,150"></polygon>
+                    <!-- Подписи к осям -->
+                    <text x="285" y="135">X</text>
+                    <text x="160" y="15">Y</text>
+                    <!-- Метки для значений R на оси X -->
+                    <line x1="50" x2="50" y1="143" y2="157"></line>
+                    <line x1="100" x2="100" y1="143" y2="157"></line>
+                    <line x1="200" x2="200" y1="143" y2="157"></line>
+                    <line x1="250" x2="250" y1="143" y2="157"></line>
+                    <!-- Метки для значений R на оси Y -->
+                    <line x1="143" x2="157" y1="50" y2="50"></line>
+                    <line x1="143" x2="157" y1="100" y2="100"></line>
+                    <line x1="143" x2="157" y1="200" y2="200"></line>
+                    <line x1="143" x2="157" y1="250" y2="250"></line>
+                    <!-- Значения R на оси X -->
+                    <text x="40" y="138">-R</text>
+                    <text x="85" y="138">-R/2</text>
+                    <text x="190" y="138">R/2</text>
+                    <text x="245" y="138">R</text>
+                    <!-- Значения R на оси Y -->
+                    <text x="162" y="54">R</text>
+                    <text x="162" y="104">R/2</text>
+                    <text x="162" y="204">-R/2</text>
+                    <text x="162" y="254">-R</text>
+                </svg>
+            </div>
+            <section class="user-input">
+                <form id="form" onsubmit="update(); return false;">
+                    <div class="values">
+                        <label>Enter X value:</label>
+                        <div class="x-values" required>
+                            <input type="radio" name="x-value" id="x-3" value="-3">
+                            <label for="x-3">-3</label>
+                            <input type="radio" name="x-value" id="x-2" value="-2">
+                            <label for="x-2">-2</label>
+                            <input type="radio" name="x-value" id="x-1" value="-1">
+                            <label for="x-1">-1</label>
+                            <input type="radio" name="x-value" id="x0" value="0">
+                            <label for="x0">0</label>
+                            <input type="radio" name="x-value" id="x1" value="1">
+                            <label for="x1">1</label>
+                            <input type="radio" name="x-value" id="x2" value="2">
+                            <label for="x2">2</label>
+                            <input type="radio" name="x-value" id="x3" value="3">
+                            <label for="x3">3</label>
+                            <input type="radio" name="x-value" id="x4" value="4">
+                            <label for="x4">4</label>
+                            <input type="radio" name="x-value" id="x5" value="5">
+                            <label for="x5">5</label>
+                        </div>
+                        <div class="y-values">
+                            <label for="y-values">Enter Y value:</label><br>
+                            <input type="text" class="y-text" maxlength="14" id="y-value" name="y-value" oninput="validateTextField()" required>
+                        </div>
+                        <label>Enter R value:</label>
+                        <div class="r-values">
+                            <input type="checkbox" name="r-value" id="r1" value="1" onclick="selectR('1')">
+                            <label for="r1">1</label>
+                            <input type="checkbox" name="r-value" id="r15" value="1.5" onclick="selectR('15')">
+                            <label for="r15">1.5</label>
+                            <input type="checkbox" name="r-value" id="r2" value="2" onclick="selectR('2')">
+                            <label for="r2">2</label>
+                            <input type="checkbox" name="r-value" id="r25" value="2.5" onclick="selectR('25')">
+                            <label for="r25">2.5</label>
+                            <input type="checkbox" name="r-value" id="r3" value="3" onclick="selectR('3')">
+                            <label for="r3">3</label>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <input id="reset" type="reset" value="Reset" onclick="cleanFields()">
+                        <input id="submit" type="submit" value="Submit">
+                    </div>
+                </form>
+            </section>
+        </section>
+        <section class="validationInfo">
+            
+        </section>
+        <section class="table">
+            <div>
+              <table id="table">
+                <tr>
+                  <th>X</th>
+                  <th>Y</th>
+                  <th>R</th>
+                  <th>Current time</th>
+                  <th>Running time</th>
+                  <th>Result</th>
+                </tr>
+              </table>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <img src="../resources/images/logo_footer.png" height="80px">
+    </footer>
+</body>
