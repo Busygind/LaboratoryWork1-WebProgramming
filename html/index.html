@@ -102,7 +102,7 @@
             width: 30px;
             line-height: 32px;
             border: 1px solid #141414;
-            border-radius: 6px;
+            border-radius: 10px;
             user-select: none;
             margin-bottom: 1%;
             margin-top: 1%;
@@ -130,7 +130,7 @@
             padding-top: 4px;
             padding-bottom: 4px;
             border: 1px solid #141414;
-            border-radius: 3px;
+            border-radius: 10px;
             background-color: #e0e0e0;
             font-family: inherit;
             font-size: inherit;
@@ -138,16 +138,36 @@
             margin-top: 1%;
         }
 
-        .buttons input{
+        .buttons input {
             font-family: inherit;
             font-size: 130%;
             color: white;
             border: 1px solid #141414;
-            border-radius: 5px;
+            border-radius: 10px;
             width: 30%;
             background-color: #141414;
             margin-bottom: 1%;
             margin-top: 1%;
+        }
+
+        .table {
+            display: flex;
+            position: relative;
+            margin: 0;
+        }
+
+        #clean-table-button {
+            border: 2px solid #141414;
+            border-radius: 15px;
+            background-color: #f8f4f4;
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+            padding-top: 3px;
+            /* margin-left: 0; */
         }
 
         #table {
@@ -156,13 +176,14 @@
             color: #141414;
             background-color: #fabf4d;
             width: 80%;
+            height: 80%;
             border: 2px solid #141414;
-            border-radius: 5px;
+            border-radius: 15px;
             text-align: center;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 10%;
+            margin-right: 3%;
             margin-bottom: 1%;
-            margin-top: 2%;
+            margin-top: 0;
         }
 
         .validationInfo {
@@ -294,18 +315,19 @@
             
         </section>
         <section class="table">
-            <div>
-              <table id="table">
+            <table id="table">
                 <tr>
-                  <th>X</th>
-                  <th>Y</th>
-                  <th>R</th>
-                  <th>Current time</th>
-                  <th>Running time</th>
-                  <th>Result</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Current time</th>
+                <th>Running time</th>
+                <th>Result</th>
                 </tr>
-              </table>
-            </div>
+            </table>
+            <button type="reset" id="clean-table-button" onclick="cleanTable()">
+                <img src="../resources/images/bin.png" height="20px">
+            </button>
         </section>
     </div>
     <footer>
