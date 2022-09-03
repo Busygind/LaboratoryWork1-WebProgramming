@@ -12,4 +12,5 @@ function cleanTable() {
         <th>Result</th>
         </tr>`;
     $('#table').html(emptyTable);
+    window.localStorage.removeItem('tableData');
 }

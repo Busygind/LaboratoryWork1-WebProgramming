@@ -23,11 +23,11 @@ function update() {
             async: false,
             data: {"x": xval.trim(), "y": yval.trim(), "r": rval.trim()},
             success: function(data) {
-                $('#table tr:last').after(data);
+                updateTable(data);
             },
             error: function(data) { 
-                $('#table tr:last').after(data);
-                // alert(data);
+                // $('#table tr:last').after(data);
+                alert(data);
             }
         });     
 

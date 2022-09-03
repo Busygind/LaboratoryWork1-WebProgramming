@@ -1,7 +1,8 @@
 <?php
+include 'validator.php';
+
 header('Access-Control-Allow-Origin: *');
-echo $_SERVER['REMOTE_ADDR'];
-// echo 'HW';
+
 date_default_timezone_set('Europe/Moscow');
 
 function check_coords($x, $y, $r) {
@@ -24,6 +25,8 @@ $start = microtime(true);
 
 $current_time = date("H:i:s");
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
+    $validator = new Validator;
+    if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
     $x = intval($_POST["x"]);
     $y = floatval($_POST["y"]);
     $r = intval($_POST["r"]);
@@ -41,4 +44,7 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
                 <th>$finish_time</th>
                 <th>$checked_dot</th>
             </tr>");
+    } else {
+        exit("Server got incorrect data!");
+    }
 }
