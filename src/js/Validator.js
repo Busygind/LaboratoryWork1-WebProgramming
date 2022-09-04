@@ -16,7 +16,7 @@ function validateVariables(x, y, r) {
     }
 
     if (!(y.trim() === "")) {
-        if (/^(0$|-?[0-9]\d*(\.\d*[1-9]$)?|-?0\.\d*[1-9])$/.test(y)) {
+        if (/-?\d[\.е]\d+|-?\d/.test(y)) {
             if ((parseInt(y) > -5) && (parseInt(y) < 3)) {
                 yIsCorrect = true;
             } else validationInfo += "<span>Y must be in interval (-5..3)!</span>";
