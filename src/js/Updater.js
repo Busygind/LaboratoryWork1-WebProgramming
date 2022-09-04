@@ -1,5 +1,5 @@
 function update() {
-    // const request = new XMLHttpRequest();
+
     var radios = document.getElementsByName("x-value");
     var xval;
     for (var i = 0; i < radios.length; i++) {
@@ -15,7 +15,7 @@ function update() {
             rval = checkboxes[i].value;
         }
     }
-    // console.log(xval.trim(), yval.trim(), rval.trim());
+
     if (validateVariables(xval, yval, rval)) {
         $.ajax({
             type: "POST",
@@ -26,7 +26,6 @@ function update() {
                 updateTable(data);
             },
             error: function(data) { 
-                // $('#table tr:last').after(data);
                 alert(data);
             }
         });     
