@@ -2,6 +2,7 @@ body {
     font-family: monospace;
     font-size: 1.0rem;
     margin: 1px;
+    
 }
 
 h2 {
@@ -195,7 +196,7 @@ h2 {
 footer {
     position: relative;
     background-color: #141414;
-    width: 99.9%;
+    width: 100%;
     bottom: 0;
     height: 100px;
     text-align: center;
